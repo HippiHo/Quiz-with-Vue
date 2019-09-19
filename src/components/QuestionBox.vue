@@ -1,7 +1,11 @@
 <template>
   <div class="question-box-container">
     <b-jumbotron>
-      <template slot="lead">{{ currentQuestion.question }}</template>
+      
+      <template slot="lead">
+        <h1 v-if="numTotal === 10">Final Question</h1>
+        {{ currentQuestion.question }}
+      </template>
 
       <hr class="my-4" />
 
@@ -30,7 +34,8 @@ export default {
   props: {
     currentQuestion: Object,
     next: Function,
-    increment: Function
+    increment: Function,
+    numTotal: Number
   },
   data() {
     return {
