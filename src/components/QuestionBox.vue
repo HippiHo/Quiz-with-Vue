@@ -1,10 +1,9 @@
 <template>
   <div class="question-box-container">
     <b-jumbotron>
-      
       <template slot="lead">
         <h1 v-if="numTotal === 10">Final Question</h1>
-        {{ currentQuestion.question }}
+        {{ replaceSpecialCharacter() }}
       </template>
 
       <hr class="my-4" />
@@ -71,6 +70,13 @@ export default {
   methods: {
     selectAnswer(index) {
       this.selectedIndex = index;
+    },
+    replaceSpecialCharacter() {
+      if (this.currentQuestion) {
+        let {question} = this.currentQuestion;
+        console.log(question);
+        return question.replace(/&quot;/gi, '"');
+      }
     },
     submitAnswer() {
       let isCorrect = false;
